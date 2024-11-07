@@ -1,4 +1,4 @@
-const operations = [1000, -700, 300, -500, 10000];
+const operations = [1000, -700, 300, -500, 10000, -9000, 2311, 4344, -60000];
 const myBalance = 100;
 
 function Summ(Array = [], myBalance = 0) {
@@ -14,32 +14,35 @@ function Summ(Array = [], myBalance = 0) {
 
 console.log(`
     your current Balance:
-    ${Summ(operations, myBalance).toFixed(2)}$
+    ${!Summ(operations, myBalance) ? 'you had big operation then your balance': `${Summ(operations, myBalance)}$`} 
     `);
 
+
+function average(Array = []) {
 const income = [];
 const expense = [];
 let averageIncome;
 let averageExpense;
-
-function average() {
-    for (let i = 0; i < operations.length; i++) {
-        if (operations[i] < 0) {
+    for (let i = 0; i < Array.length; i++) {
+        if (Array[i] < 0) {
             continue;
         } 
-        income.push(operations[i]);
+        income.push(Array[i]);
         averageIncome = Summ(income) / income.length;
     }
-        for (let i = 0; i < operations.length; i++) {
-        if (operations[i] > 0) {
+        for (let i = 0; i < Array.length; i++) {
+        if (Array[i] > 0) {
             continue;
         } 
-        expense.push(operations[i]);
+        expense.push(Array[i]);
         averageExpense = expense.reduce((accumulator, currentValue) => accumulator + currentValue, 0) / expense.length;
     }
-        return (`your average income: ${averageIncome.toFixed(2)}$ and your average expence ${averageExpense.toFixed(2)}$ `);
+        return (`
+        average income: ${averageIncome.toFixed(2)}$
+        average expence ${averageExpense.toFixed(2)}$ `
+    );
 }
-console.log(average());
+console.log(average(operations));
 
 
 
